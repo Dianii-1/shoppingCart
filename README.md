@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Pasos para levantar la app en desarrollo
 
-## Getting Started
+1. Levantar la base de datos
 
-First, run the development server:
+docker compose up -d
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Crear una copia de el .env.template y renombrarlo a .env
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Reemplazar las variables de entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Ejecutar el comando npm install para reconstruir los módulos de node
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. Ejecutar el comando npm run dev para ejecutar aplicación en desarrollo
 
-## Learn More
+6. Ejecutar estos comandos de Prisma
 
-To learn more about Next.js, take a look at the following resources:
+npx prisma migrate dev
+npx prisma generate
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. Ejecutar el SEED para crear la base de datos local
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Prisma commnads
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npx prisma init
+npx prisma migrate dev
+npx prisma generate
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Libreria para saber que actualizaciones de dependencias tenemos pendientes
+https://www.npmjs.com/package/npm-check-updates
+ comando para instalar, esto se realiza en el cdm 
+ npm i npm-check-updates
+
+se corre el comando, para conocer que actualizaciones tenemos pendientes en las dependencias
+
+ncu en el proyecto
+
+luego si se quieren actualizar se corre el comando
+
+ncu --udgrade
+
+libreria para guardar cookies del lado del cliente 
+https://www.npmjs.com/package/cookies-next
+comando: npm i cookies-next

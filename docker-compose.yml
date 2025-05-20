@@ -1,0 +1,24 @@
+# los archivos con la extencion yml la tabulacion es importante
+# se pueden configurar variables de entorno en este caso el usuario y la contraseña
+# tambien se configuran los volumenes, esto nos permite conectar una carpeta de nuestra computadora con una carpeta del servidor
+# o en este caso con la imagen de docker
+
+# este codigo me sirve para levantar una base de datos postgres localmente
+
+version: '3'
+
+services:
+  todosDB:
+    image: postgres:15.3
+    container_name: todos-db
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data 
+      #voy a tener una carpeta en mi proyecto llamada postgres los : es para hacer alucion a que se conecta
+      # con el contenedor en la carpeta llamada var
+      # comando para subir la imagen docker compose up -d
