@@ -1,18 +1,33 @@
 import { WidgetItem } from "@/components/WidgetItem";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 
 export const metadata = {
  title: 'Dashboard',
  description: 'SEO Title',
 };
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
+  // este metodo solo se utiliza del lado del servidor para obtener la sesion autenticada
+  const session = await getServerSession(authOptions);
+
+  if(!session){
+    redirect('/api/auth/signin');
+  }
+
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {/* TODO: src/components <WidgetItem /> */}
       <WidgetItem
-        title="Global Activities"
+        title="Usuario conectado S-Side"
       >
-        <div>algo</div>
+        <div className="flex flex-col gap-4">
+          <span>{session.user?.name}</span>
+          <span>{session.user?.email}</span>
+          <span>{session.user?.image}</span>
+        </div>
       </WidgetItem>
       {/* TODO: Fin <WidgetItem /> */}
     </div>
