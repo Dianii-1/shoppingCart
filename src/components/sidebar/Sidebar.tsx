@@ -10,6 +10,9 @@ import { LogoutButton } from "./LogoutButton";
 export const Sidebar = async () => {
 
   const session = await getServerSession(authOptions);
+  const userRoles = session?.user?.roles ?? ['user'];
+  const userName = session?.user?.name ?? 'Sin nombre';
+  const userImage = session?.user?.image ?? ''
 
   const items = [
     {
@@ -64,16 +67,16 @@ return (
 
     <div className="mt-8 text-center">
       <Image
-        src={session?.user?.image ?? ''}
+        src={userImage}
         alt="user"
         className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
         width={28}
         height={28}
       />
       <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-        {session?.user?.name ?? 'Sin nombre'}
+        {userName}
       </h5>
-      <span className="hidden text-gray-400 lg:block">Admin</span>
+      <span className="hidden text-gray-400 lg:block capitalize">{userRoles.join(',')}</span>
     </div>
 
     <ul className="space-y-2 tracking-wide mt-8">

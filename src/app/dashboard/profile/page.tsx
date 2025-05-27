@@ -15,6 +15,8 @@ export default function ProfilePage() {
       <span>{session?.user?.name}</span>
       <span>{session?.user?.email}</span>
       <span>{session?.user?.image}</span>
+      <span className="capitalize">{session?.user?.roles?.join(',')}</span>
+      <span>{session?.user?.id}</span>
     </div>
   );
 }
