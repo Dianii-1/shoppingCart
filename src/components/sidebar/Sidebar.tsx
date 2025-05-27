@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import {  CiLogout } from "react-icons/ci";
 import { SidebarItem } from "./SidebarItem";
-import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOutline, IoListOutline } from "react-icons/io5";
+import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOutline, IoListOutline, IoPersonOutline } from "react-icons/io5";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { LogoutButton } from "./LogoutButton";
 
-export const Sidebar = () => {
+
+export const Sidebar = async () => {
+
+  const session = await getServerSession(authOptions);
+
   const items = [
     {
       path: "/dashboard",
@@ -31,6 +37,11 @@ export const Sidebar = () => {
         title: "Productos",
         icon:  <IoBasketOutline size={30} />,
       },
+      {
+        path: "/dashboard/profile",
+        title: "Perfil",
+        icon:  <IoPersonOutline size={30} />,
+      },
 ]
     
 
@@ -53,16 +64,14 @@ return (
 
     <div className="mt-8 text-center">
       <Image
-        src={
-          "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c"
-        }
+        src={session?.user?.image ?? ''}
         alt="user"
         className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
         width={28}
         height={28}
       />
       <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-        Cynthia J. Watts
+        {session?.user?.name ?? 'Sin nombre'}
       </h5>
       <span className="hidden text-gray-400 lg:block">Admin</span>
     </div>
@@ -75,10 +84,7 @@ return (
   </div>
 
   <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t border-gray-300">
-    <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-      <CiLogout />
-      <span className="group-hover:text-gray-700">Logout</span>
-    </button>
+    <LogoutButton/>
   </div>
 </aside>
 );
