@@ -2,9 +2,9 @@
 
 1. Levantar la base de datos
 
-docker compose up -d
+```docker compose up -d```
 
-2. Crear una copia de el .env.template y renombrarlo a .env
+2. Crear una copia de el ```.env.template``` y renombrarlo a ```.env```
 
 3. Reemplazar las variables de entorno
 
@@ -33,8 +33,9 @@ npx prisma generate
 
 Libreria para saber que actualizaciones de dependencias tenemos pendientes
 https://www.npmjs.com/package/npm-check-updates
+
  comando para instalar, esto se realiza en el cdm 
- npm i npm-check-updates
+ ```npm i npm-check-updates```
 
 se corre el comando, para conocer que actualizaciones tenemos pendientes en las dependencias
 
@@ -42,8 +43,8 @@ ncu en el proyecto
 
 luego si se quieren actualizar se corre el comando
 
-ncu --udgrade
+```ncu --udgrade```
 
 libreria para guardar cookies del lado del cliente 
 https://www.npmjs.com/package/cookies-next
-comando: npm i cookies-next
+comando: ```npm i cookies-next```
