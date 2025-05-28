@@ -12,7 +12,7 @@ export const Sidebar = async () => {
   const session = await getServerSession(authOptions);
   const userRoles = session?.user?.roles ?? ['user'];
   const userName = session?.user?.name ?? 'Sin nombre';
-  const userImage = session?.user?.image ?? ''
+  const userImage = session?.user?.image ?? 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c'
 
   const items = [
     {

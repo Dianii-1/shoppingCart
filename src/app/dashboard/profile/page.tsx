@@ -12,11 +12,11 @@ export default function ProfilePage() {
     <div className="flex flex-col gap-4">
       <h1>Perfil del lado del cliente</h1>
       <hr />
-      <span>{session?.user?.name}</span>
-      <span>{session?.user?.email}</span>
-      <span>{session?.user?.image}</span>
-      <span className="capitalize">{session?.user?.roles?.join(',')}</span>
-      <span>{session?.user?.id}</span>
+      <span>{session?.user?.name ?? 'Not-name'}</span>
+      <span>{session?.user?.email ?? 'no-email'}</span>
+      <span>{session?.user?.image ?? 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c'}</span>
+      <span className="capitalize">{session?.user?.roles?.join(',') ?? ['no-roles']}</span>
+      <span>{session?.user?.id ?? 'no-uuid'}</span>
     </div>
   );
 }
